@@ -34,3 +34,34 @@ class selectData <T extends baseData> {
 const select = new selectData([{name: 'xiaohong'}])
 console.log(select.getData(0))
 
+
+//接口范型函数
+// function identity<T>(arg: T): T {
+//   console.log(arg)  //test
+//   return arg;
+// }
+// let myIdentify: <U>(arg: U) => U = identity
+
+// myIdentify('test')    
+
+
+interface GenericIdentityFn {
+  <T>(arg: T): T
+}
+
+function indentity<T>(arg: T): T {
+  console.log(arg)
+  return arg
+}
+
+let myIdentify: GenericIdentityFn = indentity
+
+myIdentify([{test: 'ceshji'}])
+
+
+
+
+
+
+
+
