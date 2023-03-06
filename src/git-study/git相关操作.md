@@ -1,8 +1,4 @@
 
-
-
-
-
 # 每次开发操作
 # 查看关联仓库
 git remote -vv
@@ -13,11 +9,11 @@ git remote add upstream URL
 # 更新远程仓库
 git fetch upstream
 
-# 切换到远程仓库的指定分支
-git checkout upstream/develop
-
 # 更新代码
 git merge upstream/master
+
+# 切换到远程仓库的指定分支
+git checkout upstream/develop
 
 # 从远程仓库指定分支切换出功能分支进行开发
 git checkout -b ft_xxxxx
