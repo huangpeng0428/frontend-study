@@ -16,3 +16,6 @@ selenium-debug.log
 *.njsproj
 *.sln
 /.history
+
+
+pre-*-bkcodeai
