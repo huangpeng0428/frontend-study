@@ -2,7 +2,7 @@
  * @Author: polo 826770122@qq.com
  * @Date: 2024-01-04 17:14:38
  * @LastEditors: polo 826770122@qq.com
- * @LastEditTime: 2024-01-06 18:52:29
+ * @LastEditTime: 2024-01-06 20:52:12
  * @FilePath: /frontend-study/src/leetcode/test.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -32,32 +32,40 @@
 // longestConsecutive(nums)
 
 
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
-var threeSum = function(nums) {
-    nums.sort((a,b) => a- b)
-    let arr = []
-    let len = nums.length
-    for(let i = 0; i < len - 2; i++) {
-        const x = nums[i]
-        if(i > 0 && nums[i] === nums[i - 1]) continue
-        let j = i + 1
-        let k = len - 1
-        while(j < k) {
-            const s = x + nums[j] + nums[k]
-            if(s > 0) k--
-            else if (s < 0) j++
-            else {
-                arr.push([x, nums[j], nums[k]])
-                for (j++; j < k && nums[j] === nums[j - 1]; j++); // 跳过重复数字
-                for (k--; k > j && nums[k] === nums[k + 1]; k--); // 跳过重复数字
+var threeSumClosest = function (nums, target) {
+    nums.sort((a, b) => a - b);
+    const n = nums.length;
+    let ans = 0;
+    let minDiff = Number.MAX_SAFE_INTEGER;
+    console.log('minDiff', minDiff)
+    for (let i = 0; i < n - 2; i++) {
+        const x = nums[i];
+
+
+        // 双指针
+        let j = i + 1, k = n - 1;
+        while (j < k) {
+            s = x + nums[j] + nums[k];
+            if (s === target) {
+                return target;
+            }
+            if (s > target) {
+                if (s - target < minDiff) { // s 与 target 更近
+                    minDiff = s - target;
+                    ans = s;
+                }
+                k--;
+            } else { // s < target
+                if (target - s < minDiff) { // s 与 target 更近
+                    minDiff = target - s;
+                    ans = s;
+                }
+                j++;
             }
         }
     }
-    console.log('arr', arr)
-    return arr
+    return ans;
 };
 
-threeSum([-1,0,1,2,-1,-4])
+
+threeSumClosest([-1,2,1,-4],)
