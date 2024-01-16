@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-13 10:15:19
- * @LastEditors: PoloHuang
- * @LastEditTime: 2020-07-14 09:58:23
+ * @LastEditors: polo 826770122@qq.com
+ * @LastEditTime: 2024-01-12 17:18:20
  */
 /**
  * @param {number[]} nums1
@@ -32,14 +32,15 @@ const arr2 = [2, 2]
 
 // }
 
-const intersect = (num1, num2) => {
-    let res = []
-    if (num1.length < num2.length) [num1, num2] = [num2, num1]
-    for (let i = 0; i < num1.length; i++) {
-        let key = num2.indexOf(num1[i])
-        if (key !== -1) res.push(num2.splice(key, 1))
+var maxSubArray = function(nums) {
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] > 0) {
+            nums[i] = nums[i] + maxSubArray(nums.slice(i+1))
+            return nums[i]
+        }
     }
-    console.log(res)
-    return res
-}
-intersect(arr1, arr2)
+};
+
+const nums = [-2,1,-3,4,-1,2,1,-5,4]
+
+maxSubArray(nums)
