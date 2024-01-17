@@ -2,7 +2,7 @@
  * @Author: polo 826770122@qq.com
  * @Date: 2024-01-04 17:14:38
  * @LastEditors: polo 826770122@qq.com
- * @LastEditTime: 2024-01-15 10:07:13
+ * @LastEditTime: 2024-01-16 17:03:57
  * @FilePath: /frontend-study/src/leetcode/test.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -83,18 +83,33 @@
 // const nums = [1,2,1,2,1]
 // subarraySum(nums, 4)
 
-var lengthOfLongestSubstring = function(s) {
-    let arr = [];
-    let max = 0;
-    for (let i = 0; i < s.length; i++) {
-        if (arr.includes(s[i])) {
-            arr.splice(0, arr.indexOf(s[i]) + 1);
-        }
-        arr.push(s[i]);
-        max = Math.max(arr.length, max);
-    }
-    console.log('max', max)
-    return max;
-};
+// var lengthOfLongestSubstring = function(s) {
+//     let arr = [];
+//     let max = 0;
+//     for (let i = 0; i < s.length; i++) {
+//         if (arr.includes(s[i])) {
+//             arr.splice(0, arr.indexOf(s[i]) + 1);
+//         }
+//         arr.push(s[i]);
+//         max = Math.max(arr.length, max);
+//     }
+//     console.log('max', max)
+//     return max;
+// };
 
-lengthOfLongestSubstring('psdfabrtwwkew')
+// lengthOfLongestSubstring('psdfabrtwwkew')
+
+var obj = new Proxy({}, {
+    get: function (target, propKey, receiver) {
+      console.log(`getting ${propKey}!`);
+      return Reflect.get(target, propKey, receiver);
+    },
+    set: function (target, propKey, value, receiver) {
+      console.log(target, `setting ${propKey}!`, receiver, Reflect);
+      return Reflect.set(target, propKey, value, receiver);
+    }
+  });
+
+  obj.count = 1
+  console.log(obj.count)
+  

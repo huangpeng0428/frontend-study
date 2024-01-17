@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-03-25 15:12:04
- * @LastEditors: PoloHuang
- * @LastEditTime: 2020-10-14 10:07:20
+ * @LastEditors: polo 826770122@qq.com
+ * @LastEditTime: 2024-01-16 21:13:41
  -->
 ## vue2.x数据监听 Object.defineProperty、vue3.x数据监听 Proxy
 **Object.defineProperty 不足**
@@ -167,4 +167,22 @@ vue中列表循环需加:key="唯一标识" 唯一标识可以是item里面id in
 
 https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/1
 https://www.jianshu.com/p/4bd5e745ce95
+```
+**图片懒加载**
+```
+Vue.directive('lazy', {
+  bind: function (el, binding) {
+    let lazyImageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target;
+          lazyImage.src = binding.value;
+          lazyImageObserver.unobserve(lazyImage);
+        }
+      });
+    });
+    lazyImageObserver.observe(el);
+  }
+});
+创建了IntersectionObserver实例，该实例的回调函数会在目标元素进入视口中被调用，目标元素的src属性设置为绑定值
 ```
