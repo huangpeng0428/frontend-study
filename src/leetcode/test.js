@@ -2,7 +2,7 @@
  * @Author: polo 826770122@qq.com
  * @Date: 2024-01-04 17:14:38
  * @LastEditors: polo 826770122@qq.com
- * @LastEditTime: 2024-01-16 17:03:57
+ * @LastEditTime: 2024-01-22 21:02:47
  * @FilePath: /frontend-study/src/leetcode/test.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -99,17 +99,38 @@
 
 // lengthOfLongestSubstring('psdfabrtwwkew')
 
-var obj = new Proxy({}, {
-    get: function (target, propKey, receiver) {
-      console.log(`getting ${propKey}!`);
-      return Reflect.get(target, propKey, receiver);
-    },
-    set: function (target, propKey, value, receiver) {
-      console.log(target, `setting ${propKey}!`, receiver, Reflect);
-      return Reflect.set(target, propKey, value, receiver);
-    }
-  });
+// var obj = new Proxy({}, {
+//     get: function (target, propKey, receiver) {
+//       console.log(`getting ${propKey}!`);
+//       return Reflect.get(target, propKey, receiver);
+//     },
+//     set: function (target, propKey, value, receiver) {
+//       console.log(target, `setting ${propKey}!`, receiver, Reflect);
+//       return Reflect.set(target, propKey, value, receiver);
+//     }
+//   });
 
-  obj.count = 1
-  console.log(obj.count)
+//   obj.count = 1
+//   console.log(obj.count)
+var theThing = null;
+
+var replaceThing = function () {
+  var originalThing = theThing;
+  var unused = function () {
+    console.log('originalThing', originalThing)
+      if (originalThing) {
+          console.log("hi");
+      };
+  }
+  theThing = {
+      longStr: new Array(1000000).join('*'),
+      someMethod: function someMethod() {
+          console.log('someMessage');
+      }
+  };
+  return unused
+};
+
+const unused = replaceThing()
+unused()
   

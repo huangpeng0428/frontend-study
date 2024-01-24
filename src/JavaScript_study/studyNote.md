@@ -448,6 +448,23 @@ webpack4配置图片压缩、splitChunksPlugin公共代码分割
 - `hash`缓存 `webpack-md5-plugin`
 - 路由懒加载 `import()`、`require.ensure`
 // https://segmentfault.com/a/1190000019499007
+
+发送请求时：
+1. 避免多余的重定向
+2. DNS解析时间可能会很长 添加DNS预解析 dns-prefetch
+3. 预连接 preconnect会触发DNS预解析
+4. 预加载 借助webpack指定prefetch
+
+页面运行时：
+并行计算：对于一些比较复杂的计算场景 除了在主JavaScript线程中拆分调度任务、异步执行之外，我们还可以在浏览器中启动并行线程放在Web Worker中（https://web.dev/articles/workers-basics?hl=zh-cn）
+利用渲染合成层：利用will-change
+.animate-element-parent {
+    will-change: opacity;
+}
+
+.animate-element {
+    transition: opacity .2s linear
+}
 ```
 **ajax和axios、fetch的区别**
 ```js
